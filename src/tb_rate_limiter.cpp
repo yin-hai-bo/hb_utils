@@ -1,5 +1,7 @@
 #include "tb_rate_limiter.h"
 
+namespace yhb {
+
 TBRateLimiter::TBRateLimiter(const Params & params, uint64_t now)
     : last_time(now)
     , bucket_committed(params.committed_burst_size, params.committed_info_rate / 1000, true)
@@ -91,3 +93,4 @@ bool TBRateLimiter::Bucket::Acquire(size_t count) {
     return false;
 }
 
+} // End of namespace 'yhb'

@@ -28,6 +28,8 @@ SOFTWARE.
 #include <cstddef>
 #include <cstdint>
 
+namespace yhb {
+
 class TBRateLimiter {
 public:
 
@@ -95,5 +97,7 @@ private:
     Bucket bucket_committed;
     Bucket bucket_excess;
 };
+
+}
 
 #endif

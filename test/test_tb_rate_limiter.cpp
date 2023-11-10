@@ -2,9 +2,10 @@
 #include <memory>
 #include "../src/tb_rate_limiter.h"
 
-typedef std::unique_ptr<TBRateLimiter> limiter_ptr;
+using TBRateLimiter = yhb::TBRateLimiter;
+using Action = yhb::TBRateLimiter::Action;
 
-using Action = TBRateLimiter::Action;
+typedef std::unique_ptr<TBRateLimiter> limiter_ptr;
 
 TEST(TBRateLimiter, Generic) {
     const TBRateLimiter::Params params {
