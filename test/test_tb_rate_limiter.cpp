@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <memory>
-#include "../src/tb_rate_limiter.h"
+#include "tb_rate_limiter.h"
 
 using TBRateLimiter = yhb::TBRateLimiter;
 using Action = yhb::TBRateLimiter::Action;
