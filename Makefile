@@ -1,6 +1,7 @@
 .PHONY: all lib test clean
 
 src_dir := ./src
+include_dir := ./include
 bin_dir := ./bin
 test_dir := ./test
 
@@ -20,7 +21,8 @@ test_src := $(addprefix $(test_dir)/, $(test_src))
 test_obj := $(test_src:.cpp=.o)
 
 CXXFLAGS := \
-	--std=c++11 -Werror -Wfatal-errors
+	--std=c++11 -Werror -Wfatal-errors \
+	-O1
 
 all: lib test
 
@@ -39,7 +41,7 @@ $(test_exe): $(test_obj) $(lib_target)
 		-l gtest -l gtest_main
 
 %.o: %.cpp
-	g++ -c $(CXXFLAGS) -I $(src_dir) -O2 -o $@ $^
+	g++ -c $(CXXFLAGS) -I $(include_dir) -o $@ $^
 
 clean:
 	$(RM) $(test_obj) $(impl_obj) $(test_exe) $(lib_target)
