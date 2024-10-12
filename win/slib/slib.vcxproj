@@ -20,11 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\checksum.cpp" />
+    <ClCompile Include="..\..\src\route_table.cpp" />
     <ClCompile Include="..\..\src\tb_rate_limiter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\checksum.h" />
+    <ClInclude Include="..\..\include\route_table.h" />
     <ClInclude Include="..\..\include\tb_rate_limiter.h" />
+    <ClInclude Include="..\..\include\yhb_common.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

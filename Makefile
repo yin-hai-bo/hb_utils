@@ -9,12 +9,14 @@ lib_target := $(bin_dir)/libhbutils.a
 test_exe := $(bin_dir)/test
 
 impl_src := \
+	route_table.cpp \
 	checksum.cpp \
 	tb_rate_limiter.cpp
 impl_src := $(addprefix $(src_dir)/, $(impl_src))
 impl_obj := $(impl_src:.cpp=.o)
 
 test_src := \
+	test_route_table.cpp \
 	test_checksum.cpp \
 	test_tb_rate_limiter.cpp
 test_src := $(addprefix $(test_dir)/, $(test_src))
@@ -22,7 +24,8 @@ test_obj := $(test_src:.cpp=.o)
 
 CXXFLAGS := \
 	--std=c++11 -Werror -Wfatal-errors \
-	-O1
+	-O1 \
+	-I $(include_dir)
 
 all: lib test
 
@@ -40,8 +43,11 @@ $(test_exe): $(test_obj) $(lib_target)
 	g++ -o $@ $^ \
 		-l gtest -l gtest_main
 
-%.o: %.cpp
-	g++ -c $(CXXFLAGS) -I $(include_dir) -o $@ $^
+$(impl_obj): %.o: %.cpp
+	g++ $(CXXFLAGS) -c -o $@ $^
+
+$(test_obj): %.o: %.cpp
+	g++ $(CXXFLAGS) -D GTEST -c -o $@ $^
 
 clean:
 	$(RM) $(test_obj) $(impl_obj) $(test_exe) $(lib_target)
